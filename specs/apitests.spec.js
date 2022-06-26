@@ -14,7 +14,11 @@ describe('api tests', () => {
       //console.log(response);
       expect(response.status).toEqual(200);
     });
-    test('Find pet by ID /GET 200', async () => {
+
+    // Обычно использую id из списка, полученного с первого теста,
+    // т.к насколько я понял генерация происходит каждый день и один и тот же id, два дня подряд, не получится использовать, 
+    // поэтому для теста, некоторые id для питомцев и пользователей нужно вытаскивать или генерировать в день теста
+    test.skip('Find pet by ID /GET 200', async () => {
       const petId = 9223372016900010000;
       const response = await api().pets().getPet2(petId); 
       expect(response.status).toEqual(200);
@@ -49,25 +53,13 @@ describe('api tests', () => {
       const data = await response.json();
       console.log(data);
     });
-    test('Upload an image /POST 200', async () => {
-      const petID = 9223372016900010000;
-      const params = new URLSearchParams(
-        {
-          additionalMetadata: '',
-          file: '',
-        }
-      );
-      const response = await api().pets().postPet2(params, petID);
-      expect(response.status).toEqual(200);
-      const data = await response.json();
-      console.log(data);
-    });
+
     test('Update an existing pet /PUT 200', async () => {
       const params = {
         "id": 9223372016900010000,
         "category": {
           "id": 123123123,
-          "name": "KEKW"
+          "name": "qwerty"
         },
         "name": "doggie",
         "photoUrls": [
@@ -86,11 +78,13 @@ describe('api tests', () => {
       const data = await response.json();
       console.log(data);
     });
-    test('Deletes a pet /DELETE 200', async () => {
-      const petId = 9223372036854203590;
+
+    test.skip('Deletes a pet /DELETE 200', async () => {
+      const petId = 9223372036854203590; // тут также нужно указывать id, сгенерированный сегодня
       const response = await api().pets().deletePet(petId); 
       expect(response.status).toEqual(200);
     });
+
     // Store
     test('Place an order for a pet /POST 200', async () => {
       const params = {
@@ -106,6 +100,7 @@ describe('api tests', () => {
       const data = await response.json();
       console.log(data);
     });
+
     test('Find purchase order by ID /GET 200', async () => {
       const params = 1; //For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
       const response = await api().pets().getStore1(params); 
@@ -113,6 +108,7 @@ describe('api tests', () => {
       const data = await response.json();
       console.log(data);
     });
+
     test('Delete purchase order by ID /DELETE 200', async () => {
       const params = 1; 
       const response = await api().pets().deleteStore(params); 
@@ -120,6 +116,7 @@ describe('api tests', () => {
       const data = await response.json();
       console.log(data);
     });
+
     test('Returns pet inventories by status /GET 200', async () => {
       const response = await api().pets().getStore2(); 
       expect(response.status).toEqual(200);
@@ -128,7 +125,7 @@ describe('api tests', () => {
     });
   
     //user
-    test('Create user /POST 200', async () => {
+    test.skip('Create user /POST 200', async () => {
       const params = {
         "id": 0,
         "username": "aaa",
@@ -145,6 +142,7 @@ describe('api tests', () => {
       console.log(data);
       console.log(response);
     });
+
     test('Login user /GET 200', async () => {
       const params = new URLSearchParams (
         {
@@ -157,14 +155,15 @@ describe('api tests', () => {
       console.log(data);
       //console.log(response);
     });
-    test('Logout user /GET 200', async () => {
+
+    test.skip('Logout user /GET 200', async () => {
       const response = await api().pets().getUserLogout(); 
       expect(response.status).toEqual(200);
       const data = await response.json();
       console.log(data);
       //console.log(response);
     });
-    test.only('Update user /PUT 200', async () => {
+    test('Update user /PUT 200', async () => {
       const username = "aaa";
       const params = {
         "id": 0,
@@ -173,7 +172,7 @@ describe('api tests', () => {
         "lastName": "string",
         "email": "string",
         "password": "111",
-        "phone": "21312312",
+        "phone": "265665",
         "userStatus": 0
       }
       const response = await api().pets().putUser(params, username); 

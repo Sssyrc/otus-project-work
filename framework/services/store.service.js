@@ -15,10 +15,6 @@ const pets = {
     const r = await fetch(`${urls.petstore}pet`,{ method: 'POST', headers: Header, body: JSON.stringify(params)});
     return r;
   },
-  postPet2: async (params, petID) => {
-    const r = await fetch(`${urls.petstore}pet/${petID}/uploadImage/?${params}`,{ method: 'POST', headers: Header});
-    return r;
-  },
   putPet: async (params) => {
     const r = await fetch(`${urls.petstore}pet`, { method: 'PUT', headers: Header, body: JSON.stringify(params)});
     return r;
