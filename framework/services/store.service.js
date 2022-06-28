@@ -14,7 +14,7 @@ const pets = {
   postPet1: async (params) => {
     const r = await fetch(`${urls.petstore}pet`,{ method: 'POST', headers: Header, body: JSON.stringify(params)});
     return r;
-  },
+  }, 
   putPet: async (params) => {
     const r = await fetch(`${urls.petstore}pet`, { method: 'PUT', headers: Header, body: JSON.stringify(params)});
     return r;
@@ -53,6 +53,10 @@ const pets = {
   },
   putUser: async (params, username) => {
     const r = await fetch(`${urls.petstore}user/${username}`, { method: 'PUT', headers: Header, body: JSON.stringify(params)});
+    return r;
+  },
+  deleteUser: async (params) => {
+    const r = await fetch(`${urls.petstore}user/${params}`, { method: 'DELETE', headers: Header});
     return r;
   },
 };
