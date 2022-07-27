@@ -16,11 +16,6 @@ describe('Tests about pets', () => {
       const response = await api().pets().getPet2(petId); 
       expect(response.status).toEqual(200);
     });
-    test('Find pet by ID /GET 404', async () => {
-      const petId = 123132;
-      const response = await api().pets().getPet2(petId); 
-      expect(response.status).toEqual(404);
-    });
     test('Add a new pet to the store /POST 200', async () => {
       const params = {
         "id": 0,

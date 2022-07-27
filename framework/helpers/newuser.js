@@ -40,7 +40,6 @@ const BuildUser = function () {
         fields.forEach((fieldName) => {
             if (this[fieldName] && typeof this[fieldName] !== 'function') {
                 data[fieldName] = this[fieldName];
-                console.warn(data[fieldName]);
             }
         });
     };

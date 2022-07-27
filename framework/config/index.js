@@ -1,6 +1,4 @@
-const urls = {
-    petstore: 'https://petstore.swagger.io/v2/',
-  };
-  
-  export default urls;
+import urls from './urls';
+
+export default urls;
   
